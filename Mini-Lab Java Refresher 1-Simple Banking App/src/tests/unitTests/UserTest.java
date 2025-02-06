@@ -10,7 +10,6 @@ public class UserTest {
 	}
 /*	public static void main(String[] args) {
 		User testUser = new User("mike", "my_password", "Mike", "Smith", "07771234567");
-		
 		System.out.println(testUser);
 	}*/
 		
@@ -38,50 +37,57 @@ public class UserTest {
 		//after refactoring
 		TestUtils.printTestPassed(test_case_name);
 	else
-		//before refactor
+		//before refactoring
 		//System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getUsername-FAILED" + TestUtils.TEXT_COLOR_RESET);
-		// after refactor
+		// after refactoring
 		TestUtils.printTestFailed(test_case_name);
 	
 	String test_case_name2 = "TC2-getPassword";
 	if (testUser.getPassword() == test_password)
-		//System.out.println(TestUtils.TEXT_COLOR_GREEN +  "TC1-getUsername-Passed" + TestUtils.TEXT_COLOR_RESET);
+		//before refactoring
+		//System.out.println(TestUtils.TEXT_COLOR_GREEN +  "TC1-getPassword-Passed" + TestUtils.TEXT_COLOR_RESET);
+		//after refactoring
 		TestUtils.printTestPassed(test_case_name2);
 	else
+		//before refactoring
 		//System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getPassword-FAILED" + TestUtils.TEXT_COLOR_RESET);
+		//after refactoring
 		TestUtils.printTestFailed(test_case_name2);
 		
 	String test_case_name3 = "TC3-getFirst_name";
 	if (testUser.getFirst_name() == test_first_name)
+		//before refactoring
 		//System.out.println(TestUtils.TEXT_COLOR_GREEN + "TC1-getFirst_name-Passed" + TestUtils.TEXT_COLOR_RESET);
+		//after refactoring
 		TestUtils.printTestPassed(test_case_name3);
-		else
+	else
+		//before refactoring
 		//System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getFirst_name-FAILED" + TestUtils.TEXT_COLOR_RESET);
-			TestUtils.printTestFailed(test_case_name3);
+		//after refactoring
+		TestUtils.printTestFailed(test_case_name3);
 	
 	String test_case_name4 = "TC4-getLast_name";
 	if (testUser.getLast_name() == test_last_name)
+		//before refactoring
 		//System.out.println(TestUtils.TEXT_COLOR_GREEN + "TC1-getLast_name-Passed" + TestUtils.TEXT_COLOR_RESET);
 		TestUtils.printTestPassed(test_case_name4);
-		else
+	else
+		//before refactoring
 		//System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getLast_name-FAILED" + TestUtils.TEXT_COLOR_RESET);
-			TestUtils.printTestFailed(test_case_name4);
+		//after refactoring
+		TestUtils.printTestFailed(test_case_name4);
 	
 	String test_case_name5 = "TC5-getMobile_number";
 	if (testUser.getMobile_number() == test_mobile_number)
+		//before refactoring
 		//System.out.println(TestUtils.TEXT_COLOR_GREEN + "TC1-getMobile_number-Passed" + TestUtils.TEXT_COLOR_RESET);
-	TestUtils.printTestFailed(test_case_name5); // Intentional defect with the wrong result input
+		//after refactoring
+		TestUtils.printTestPassed(test_case_name5); 
 	else
+		//before refactoring
 		//System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getMobile_number-FAILED" + TestUtils.TEXT_COLOR_RESET);
+		//after refactoring
 		TestUtils.printTestFailed(test_case_name5);
 	
-	
-	String test_case_name6 = "TC6-getMobile_number";
-	if (testUser.getMobile_number() == test_mobile_number)
-		//System.out.println(TestUtils.TEXT_COLOR_GREEN + "TC1-getMobile_number-Passed" + TestUtils.TEXT_COLOR_RESET);
-	TestUtils.printTestPassed(test_case_name); // Intentional defect with the wrong result input variable checked
-	else
-		//System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getMobile_number-FAILED" + TestUtils.TEXT_COLOR_RESET);
-		TestUtils.printTestFailed(test_case_name);
 	}
 }	
