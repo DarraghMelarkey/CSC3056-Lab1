@@ -21,7 +21,7 @@ public class UserTest {
 	String test_username = "mike";
 	String test_password = "password";
 	String test_first_name = "Mike";
-	String test_last_name = "Smith";
+	String test_last_name = "Test"; //Intentional Injected defect, last name = null
 	String test_mobile_number = "0771234567";
 	
 	// 2 - Exercise, run the object under test (constructor)
@@ -88,6 +88,44 @@ public class UserTest {
 		//System.out.println(TestUtils.TEXT_COLOR_RED + "TC1-getMobile_number-FAILED" + TestUtils.TEXT_COLOR_RESET);
 		//after refactoring
 		TestUtils.printTestFailed(test_case_name5);
+	
+	
+	boolean passed = true;
+	if (passed)
+		System.out.println("All TC's passed.");
+	
+	if (testUser.getUsername() != test_username) {
+		System.out.println("TC1 failed: username did not match");
+		passed = false;
+	}
+	
+	if (testUser.getPassword() != test_password) {
+		System.out.println("TC2 failed: password did not match");
+		passed = false;
+	}
+	
+	if (testUser.getFirst_name() != test_first_name) {
+		System.out.println("TC3 failed: first_name did not match");
+		passed = false;
+	}
+	
+	if (testUser.getLast_name() != test_last_name) {
+		System.out.println("TC4 failed: last_name did not match");
+		passed = false;
+	}
+	
+	if (testUser.getMobile_number() != test_mobile_number) {
+		System.out.println("TC5 failed: mobile_number did not match");
+		passed = false;
+	}
+	
+	assert testUser.getUsername() == test_username;
+	assert testUser.getPassword() == test_password;
+	assert testUser.getFirst_name() == test_first_name;
+	assert testUser.getLast_name() == test_last_name;
+	assert testUser.getMobile_number() == test_mobile_number;
+	
+	System.out.println("All Java assertions in the test suite passed (none failed)");
 	
 	}
 }	
