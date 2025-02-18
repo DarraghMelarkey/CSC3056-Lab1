@@ -128,4 +128,5 @@ public class UserTest {
 	System.out.println("All Java assertions in the test suite passed (none failed)");
 	
 	}
-}	
+}
+

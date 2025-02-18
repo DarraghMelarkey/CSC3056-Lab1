@@ -1,10 +1,11 @@
 package tests.systemTests;
+import java.util.NoSuchElementException;
 import app.SimpleBankingApp;
 import controller.AccountController;
+import controller.UserController;
 import utils.TestUtils;
 public class SimpleBankingAppTest {
-  
-	// system under test (SUT):
+ 	// system under test (SUT):
 	//static SimpleBankingApp mainApp = new SimpleBankingApp ();
 	// this test method (test case) verifies if the data load feature of the class (unit or component)
 	// under test (UUT) works properly
@@ -15,18 +16,18 @@ public class SimpleBankingAppTest {
 		// 1-Setup phase: none
 		
 		// 2-Exercise phase
-		SimpleBankingApp.loadUserData();
+		UserController.loadUserData();
 		// 3-Verify phase
 		// we see in the load function of the UUT that we have loaded 3 users, so let's verify that
-		if (SimpleBankingApp.users.size() == 3)
+		if (UserController.users.size() == 3)
 			System.out.println(TestUtils.TEXT_COLOR_GREEN + "testLoadData: loadUserData: TC1 passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "testLoadData: loadUserData: TC1 FAILED" + TestUtils.TEXT_COLOR_RESET);
 		// The above only verification is basic (simple, weak)
 		// To do STRONGER verification, we would need more assertions for user names and account balances, etc.
 		
-		SimpleBankingApp.loadAccountData();
-		if (SimpleBankingApp.accounts.size() == 4)
+		AccountController.loadAccountData();
+		if (AccountController.accounts.size() == 4)
 			System.out.println(TestUtils.TEXT_COLOR_GREEN + "testLoadData: loadAccountData: TC1 passed" + TestUtils.TEXT_COLOR_RESET);
 		else
 			System.out.println(TestUtils.TEXT_COLOR_RED + "testLoadData: loadAccountData: TC1 FAILED" + TestUtils.TEXT_COLOR_RESET);
@@ -83,12 +84,76 @@ public class SimpleBankingAppTest {
 	    SimpleBankingApp.addTransaction("5495-1234", -withdrawalAmount);
 	}
 	
+	public static void testAddTransaction() {
+       try {
+           AccountController.addTransaction("5495-1234", 0);
+           System.out.println(TestUtils.TEXT_COLOR_RED + "testAddTransaction: failed"
+           + TestUtils.TEXT_COLOR_RESET);
+       } catch (IllegalArgumentException e) {
+           System.out.println(TestUtils.TEXT_COLOR_GREEN + "testAddTransaction: passed"
+       + TestUtils.TEXT_COLOR_RESET);
+       }
+       try {
+           AccountController.addTransaction("9999-1111", 50);
+           System.out.println(TestUtils.TEXT_COLOR_RED + "testAddTransaction: failed"
+           + TestUtils.TEXT_COLOR_RESET);
+       } catch (NoSuchElementException e) {
+           System.out.println(TestUtils.TEXT_COLOR_GREEN + "testAddTransaction: passed"
+       + TestUtils.TEXT_COLOR_RESET);
+       }
+   }
+	
+   public static void testGetBalance() {
+       try {
+           AccountController.getBalance("9999-1111");
+           System.out.println(TestUtils.TEXT_COLOR_RED + "testGetBalance: failed"
+           + TestUtils.TEXT_COLOR_RESET);
+       } catch (NoSuchElementException e) {
+           System.out.println(TestUtils.TEXT_COLOR_GREEN + "testGetBalance: passed"
+       + TestUtils.TEXT_COLOR_RESET);
+       }
+   }
+   public static void testGetTransactionHistory() {
+       try {
+           AccountController.getTransactionHistory("9999-1111");
+           System.out.println(TestUtils.TEXT_COLOR_RED + "testGetTransactionHistory: failed"
+           + TestUtils.TEXT_COLOR_RESET);
+       } catch (NoSuchElementException e) {
+           System.out.println(TestUtils.TEXT_COLOR_GREEN + "testGetTransactionHistory: passed"
+       + TestUtils.TEXT_COLOR_RESET);
+       }
+   }
+  
+   public static void testTransferFunds() {
+      
+       try {
+           AccountController.transferFunds("5495-1234", "9999-1111", 20);
+           System.out.println(TestUtils.TEXT_COLOR_RED + "testTransferFunds: failed"
+           + TestUtils.TEXT_COLOR_RESET);
+       } catch (NoSuchElementException e) {
+           System.out.println(TestUtils.TEXT_COLOR_GREEN + "testTransferFunds: passed"
+       + TestUtils.TEXT_COLOR_RESET);
+       }
+       try {
+           AccountController.transferFunds("5495-1234", "5495-6789", -10);
+           System.out.println(TestUtils.TEXT_COLOR_RED + "testTransferFunds: failed"
+           + TestUtils.TEXT_COLOR_RESET);
+       } catch (IllegalArgumentException e) {
+           System.out.println(TestUtils.TEXT_COLOR_GREEN + "testTransferFunds: passed"
+       + TestUtils.TEXT_COLOR_RESET);
+       }
+   }
 	
 	public static void main(String[] args) {
 		// we need to call our test cases (methods)
 		testLoadData();
 		testDeposits();
-		 testWithdrawals();
-	}
+		testWithdrawals();
+		testAddTransaction();
+		testGetBalance();
+		testGetTransactionHistory();	
+		testTransferFunds();
+		}
 }
+
 

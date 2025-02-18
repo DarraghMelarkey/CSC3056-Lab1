@@ -64,12 +64,12 @@ public class AccountTest {
    	}
    	
    	if (testAccount.getAccount_type() != test_account_type) {
-   		System.out.println("TC3 failed: Account type did not match");
+   		System.out.println("TC3 failed: account_type did not match");
    		passed = false;
    	}
    	
    	if (testAccount.getAccount_opening_date() != test_opening_date) {
-   		System.out.println("TC4 failed: opening date did not match");
+   		System.out.println("TC4 failed: opening_date did not match");
    		passed = false;
    	}
    	
